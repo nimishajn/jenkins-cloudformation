@@ -4,7 +4,7 @@ pipeline {
         stage('Clone Repo') {
             steps {
                 sh "export AWS_DEFAULT_PROFILE=ap-southeast-2"
-                sh "aws cloudformation create-stack --stack-name myec2stack --template-body file://createEc2instance.json --region 'ap-southeast-2'"
+                sh "aws cloudformation create-stack --stack-name myec2stack --template-body file://createEc2instance.json --region 'ap-southeast-2' --parameters ParameterKey=KeyName,ParameterValue=jenkins-kp ParameterKey=InstanceType,ParameterValue=t2.micro"
                 }
             }
         }
